@@ -301,7 +301,7 @@ mapping <- aes(x, y, scale, ratioxy, angleofspine, anglerighthumerus, anglelefth
                anglerightradius, angleleftradius,
                anglerightleg, angleleftleg, angleofneck)
 #Use vectors to make 2 stick men at once, one at (15,3) and one at (30,4)
-dataman <- data.frame(x= c(4,12.3), y=c(7.1, 7.5),
+dataman <- data.frame(x= c(4,12), y=c(7.1, 7.45),
                         scale = 0.1,
                         ratioxy = ratioxy,
                         angleofspine = -pi/2 ,
@@ -315,9 +315,9 @@ dataman <- data.frame(x= c(4,12.3), y=c(7.1, 7.5),
 plot <- ggplot() + geom_point(aes(passage,log10(titer),color=treatment), data=dat) +
   geom_line(aes(passage,log10(titer),color=treatment), data=dat) +
   xkcdaxis(xrange,yrange) + #Set up the xkcd-themed axis
-  annotate("text", x=4, y = 7.22,
+  annotate("text", x=4, y = 7.3,
              label = "Come on\nyou can do it!", family="xkcd" ) +
-  annotate("text", x=12, y = 7.6,
+  annotate("text", x=11.5, y = 7.6,
              label = "We've created\na monster!", family="xkcd" ) +
   xkcdman(mapping, dataman) #Add the xkcd stick figures
 plot

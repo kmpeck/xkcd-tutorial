@@ -1,7 +1,7 @@
 ---
 title: "xkcd plotting in R"
 author: "Kayla Peck"
-date: "Wednesday, February 24, 2016"
+date: "Last updated: May 3, 2016"
 output: pdf_document
 ---
 
@@ -277,11 +277,11 @@ See `example(xkcdrect)` for how to specify the width, height, and colors of the 
 
 # Example with Real Data
 
-I've been passaging virus to try to adapt it, and for each passage, I titer the virus (essentially see how many viruses I still have). If I see a decrease in titer over time, I can assume my virus population is dying out. If the titer remains constant, there is a good chance I'm achieving adaptation.
+I've been passaging virus to try to adapt it, and for each passage, I titer the virus (essentially see how many virions I still have). If I see a decrease in titer over time, I can assume my virus population is dying out. If the titer remains constant, there is a good chance I'm achieving adaptation.
 
 First, read in the data and plot titer against passage and also group by treatment (hDPP4 and mDPP4):
 
-```{r,message=FALSE, warning=FALSE, fig.width=6, fig.height=4, fig.align='center'}
+```{r,message=FALSE, warning=FALSE, fig.width=5.5, fig.height=3.5, fig.align='center'}
 dat <- read.csv("host_invasion_titers.csv")
 xrange <- range(dat$passage)
 yrange <- range(log10(dat$titer))
@@ -294,7 +294,7 @@ plot
 
 Now let's try to add in a few stick figures. Note that in the above example code, they used pi and -pi and adding pis and it gets weird. For my own stick figures, I just used a classic [radian circle](http://math.rice.edu/~pcmi/sphere/degrad.gif) for reference. Same thing, but easier on my brain. 
 
-```{r,message=FALSE, warning=FALSE, fig.width=6, fig.height=5, fig.align='center'}
+```{r,message=FALSE, warning=FALSE, fig.width=6, fig.height=4, fig.align='center'}
 ratioxy <- diff(xrange)/diff(yrange)
 #designate the characters you are going to map
 mapping <- aes(x, y, scale, ratioxy, angleofspine, anglerighthumerus, anglelefthumerus,
@@ -325,6 +325,8 @@ plot
 
 Note: for the record, we haven't created a monster.
 
+Another note: You'll notice that the xkcd font package can't handle parentheses (as seen in the log10(virus) axis). The "fix" I've been using in powerpoints is to manually add the label (once you've installed the xkcd font package, you can access it in Microsoft applications) but change the font face for **just** the parentheses. 
+
 # Saving plots
 
 In **ggplot2**, the function `ggsave()` is the preferred function for saving plots. To save as a .png file, use the code:
@@ -346,6 +348,7 @@ embed_fonts("plot.pdf")
 ```
 
 If you're using RStudio, you can always generate the plot and use the *Export* drop-down menu and choose the *Save as PDF...* option.
+
 
 ## References
 * This document was generated using R markdown, [cheatsheet here.](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf)
